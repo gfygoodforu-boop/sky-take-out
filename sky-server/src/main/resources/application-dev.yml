@@ -6,3 +6,8 @@ sky:
     database: sky_take_out
     username: root
     password: 123456
+  alioss:
+    endpoint: oss-cn-hangzhou.aliyuncs.com
+    access-key-id: LTAI5tDCFYmEUTJQGkFmPJoZ
+    access-key-secret: E4lCmB3HXmgWc9rXE5TpqBDcAESUdD
+    bucket-name: gfy-goodforu
