@@ -118,4 +118,28 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     }
 
+
+
+
+    /**
+     * 启用禁用员工账号
+     * @param status
+     * @param id
+     * @return
+     */
+    public void startOrStop(Integer status, Long id) {
+        // update employee set status = ? where id = ?
+
+        /*Employee employee = new Employee();
+          employee.setStatus(status);
+          employee.setId(id);*/
+
+        //想要通过id可以修改多个属性，不仅限于status，增加代码通用性
+        Employee employee = Employee.builder()
+                .status(status)
+                .id(id)
+                .build();
+        employeeMapper.update(employee);
+    }
+
 }
