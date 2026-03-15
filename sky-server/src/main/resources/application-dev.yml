@@ -11,3 +11,8 @@ sky:
     access-key-id: LTAI5tDCFYmEUTJQGkFmPJoZ
     access-key-secret: E4lCmB3HXmgWc9rXE5TpqBDcAESUdD
     bucket-name: gfy-goodforu
+  redis:
+    host: localhost
+    port: 6379
+    password: 123456
+    database: 10
