@@ -112,4 +112,12 @@ public interface OrderService {
      */
     void delivery(Long id);
 
+
+    /**
+     * 完成订单
+     *
+     * @param id
+     */
+    void complete(Long id);
+
 }
