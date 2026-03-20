@@ -438,33 +438,65 @@ public class OrderServiceImpl implements OrderService {
      * @param ordersRejectionDTO
      */
     public void rejection(OrdersRejectionDTO ordersRejectionDTO) throws Exception {
-        // 根据id查询订单
+//        // 根据id查询订单
+//        Orders ordersDB = orderMapper.getById(ordersRejectionDTO.getId());
+//
+//        // 订单只有存在且状态为2（待接单）才可以拒单
+//        if (ordersDB == null || !ordersDB.getStatus().equals(Orders.TO_BE_CONFIRMED)) {
+//            throw new OrderBusinessException(MessageConstant.ORDER_STATUS_ERROR);
+//        }
+//
+//        //支付状态
+//        Integer payStatus = ordersDB.getPayStatus();
+//        if (payStatus == Orders.PAID) {
+//            //用户已支付，需要退款
+//            String refund = weChatPayUtil.refund(
+//                    ordersDB.getNumber(),
+//                    ordersDB.getNumber(),
+//                    new BigDecimal(0.01),
+//                    new BigDecimal(0.01));
+//            log.info("申请退款：{}", refund);
+//        }
+//
+//        // 拒单需要退款，根据订单id更新订单状态、拒单原因、取消时间
+//        Orders orders = new Orders();
+//        orders.setId(ordersDB.getId());
+//        orders.setStatus(Orders.CANCELLED);
+//        orders.setRejectionReason(ordersRejectionDTO.getRejectionReason());
+//        orders.setCancelTime(LocalDateTime.now());
+//
+//        orderMapper.update(orders);
+
+        // 1. 根据id查询订单
         Orders ordersDB = orderMapper.getById(ordersRejectionDTO.getId());
 
-        // 订单只有存在且状态为2（待接单）才可以拒单
+        // 2. 校验订单是否存在，并且状态必须是待接单
         if (ordersDB == null || !ordersDB.getStatus().equals(Orders.TO_BE_CONFIRMED)) {
             throw new OrderBusinessException(MessageConstant.ORDER_STATUS_ERROR);
         }
 
-        //支付状态
-        Integer payStatus = ordersDB.getPayStatus();
-        if (payStatus == Orders.PAID) {
-            //用户已支付，需要退款
-            String refund = weChatPayUtil.refund(
-                    ordersDB.getNumber(),
-                    ordersDB.getNumber(),
-                    new BigDecimal(0.01),
-                    new BigDecimal(0.01));
-            log.info("申请退款：{}", refund);
-        }
-
-        // 拒单需要退款，根据订单id更新订单状态、拒单原因、取消时间
+        // 3. 封装更新对象
         Orders orders = new Orders();
         orders.setId(ordersDB.getId());
+
+        // 拒单后订单状态改为已取消
         orders.setStatus(Orders.CANCELLED);
+
+        // 记录拒单原因
         orders.setRejectionReason(ordersRejectionDTO.getRejectionReason());
+
+        // 设置取消原因
+        orders.setCancelReason("商家拒单");
+
+        // 设置取消时间
         orders.setCancelTime(LocalDateTime.now());
 
+        // 4. 当前项目未接入真实微信退款，这里改为模拟退款
+        if (ordersDB.getPayStatus() != null && ordersDB.getPayStatus().equals(Orders.PAID)) {
+            orders.setPayStatus(Orders.REFUND);
+        }
+
+        // 5. 更新订单
         orderMapper.update(orders);
     }
 
@@ -475,6 +507,30 @@ public class OrderServiceImpl implements OrderService {
      * @param ordersCancelDTO
      */
     public void cancel(OrdersCancelDTO ordersCancelDTO) throws Exception {
+//        // 根据id查询订单
+//        Orders ordersDB = orderMapper.getById(ordersCancelDTO.getId());
+//
+//        //支付状态
+//        Integer payStatus = ordersDB.getPayStatus();
+//        if (payStatus == 1) {
+//            //用户已支付，需要退款
+//            String refund = weChatPayUtil.refund(
+//                    ordersDB.getNumber(),
+//                    ordersDB.getNumber(),
+//                    new BigDecimal(0.01),
+//                    new BigDecimal(0.01));
+//            log.info("申请退款：{}", refund);
+//        }
+//
+//        // 管理端取消订单需要退款，根据订单id更新订单状态、取消原因、取消时间
+//        Orders orders = new Orders();
+//        orders.setId(ordersCancelDTO.getId());
+//        orders.setStatus(Orders.CANCELLED);
+//        orders.setCancelReason(ordersCancelDTO.getCancelReason());
+//        orders.setCancelTime(LocalDateTime.now());
+//        orderMapper.update(orders);
+
+
         // 根据id查询订单
         Orders ordersDB = orderMapper.getById(ordersCancelDTO.getId());
 
@@ -497,6 +553,8 @@ public class OrderServiceImpl implements OrderService {
         orders.setCancelReason(ordersCancelDTO.getCancelReason());
         orders.setCancelTime(LocalDateTime.now());
         orderMapper.update(orders);
+
+
     }
 
 
