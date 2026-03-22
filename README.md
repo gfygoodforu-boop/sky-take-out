@@ -1,15 +1,34 @@
 # 🍔 Sky Take-Out System
 
-A full-stack online food ordering system built with **Spring Boot + Vue**, featuring **Redis caching**, **WebSocket real-time updates**, and **JWT-based authentication**.
+A backend-focused online food ordering system built with **Spring Boot + Vue**, featuring **Redis caching**, **WebSocket real-time updates**, and **JWT-based authentication**.
+
+---
+
+## 📖 Introduction
+
+Sky Take-Out System is a food ordering project designed for both users and administrators.  
+It supports core business functions such as dish browsing, shopping cart management, order placement, order processing, category management, and set meal management.
+
+This repository mainly contains the **backend implementation** of the project, while the frontend pages shown in the screenshots are for demonstration purposes only.
 
 ---
 
 ## 📸 Preview
 
-> Screenshots can be added here
+### Admin Login
+![Admin Login](./screenshots/admin-login.png)
 
-- User ordering interface
-- Admin management dashboard
+### Order Management
+![Order Management](./screenshots/order-management.png)
+
+### Set Meal Management
+![Set Meal Management](./screenshots/setmeal-management.png)
+
+### Category Management
+![Category Management](./screenshots/category-management.png)
+
+### User Mini Program Login
+![User Mini Program Login](./screenshots/wechat-login.png)
 
 ---
 
@@ -24,9 +43,11 @@ A full-stack online food ordering system built with **Spring Boot + Vue**, featu
 
 ### 🛠 Admin Side
 - Manage dishes and categories
-- Manage orders (accept, reject, dispatch)
+- Manage set meals
+- Manage orders (accept, reject, dispatch, cancel)
 - Manage employees
 - View business statistics dashboard
+- Configure shop status
 
 ### ⚡ System Features
 - Redis caching for performance optimization
@@ -49,8 +70,9 @@ A full-stack online food ordering system built with **Spring Boot + Vue**, featu
 - JWT
 
 ### Frontend
-- Vue.js *(frontend project not included in this repository)*
-- Element UI
+- Vue.js *(not included in this repository)*
+- Element UI *(not included in this repository)*
+- WeChat Mini Program *(not included in this repository)*
 
 ### Other
 - Maven
@@ -62,10 +84,11 @@ A full-stack online food ordering system built with **Spring Boot + Vue**, featu
 
 ```text
 sky-take-out
-├── sky-common     # Common utilities and constants
-├── sky-pojo       # Entity classes and DTO/VO objects
-├── sky-server     # Core business logic and backend services
+├── screenshots            # Project screenshots
+├── sky-common             # Common utilities and constants
+├── sky-pojo               # Entity classes and DTO/VO objects
+├── sky-server             # Core business logic and backend services
 ├── sql
-│   └── sky.sql    # Database initialization script
+│   └── sky.sql            # Database initialization script
 ├── README.md
 └── pom.xml
