@@ -65,6 +65,7 @@ sky-take-out
 ├── sky-common     # Common utilities and constants
 ├── sky-pojo       # Entity classes and DTO/VO objects
 ├── sky-server     # Core business logic and backend services
-├── sky.sql        # Database initialization script
+├── sql
+│   └── sky.sql    # Database initialization script
 ├── README.md
 └── pom.xml
