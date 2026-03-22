@@ -1,6 +1,6 @@
 # 🍔 Sky Take-Out System
 
-A backend-focused online food ordering system built with **Spring Boot + Vue**, featuring **Redis caching**, **WebSocket real-time updates**, and **JWT-based authentication**.
+A backend-focused food ordering system built with **Spring Boot + Vue**, featuring **Redis caching**, **WebSocket real-time notifications**, and **JWT-based authentication**.
 
 ---
 
@@ -92,3 +92,4 @@ sky-take-out
 │   └── sky.sql            # Database initialization script
 ├── README.md
 └── pom.xml
+```
