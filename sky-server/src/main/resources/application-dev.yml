@@ -8,8 +8,8 @@ sky:
     password: 123456
   alioss:
     endpoint: oss-cn-hangzhou.aliyuncs.com
-    access-key-id: LTAI5tDCFYmEUTJQGkFmPJoZ
-    access-key-secret: E4lCmB3HXmgWc9rXE5TpqBDcAESUdD
+    access-key-id: your-access-key-id
+    access-key-secret: your-access-key-secret
     bucket-name: gfy-goodforu
   redis:
     host: localhost
@@ -17,8 +17,8 @@ sky:
     password: 123456
     database: 10
   wechat:
-    appid: wxb9221e926952c2ba
-    secret: 9ca8853ac44362b97baa2abebdf6bed8
+    appid: your-appid
+    secret: your-secret
     # 微信支付功能 个人做不了
 #    mchid: 1561414331
 #    mchSerialNo: 4B3B3DC35414AD50B1B755BAF8DE9CC7CF407606
